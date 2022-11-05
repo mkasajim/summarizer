@@ -1,104 +1,126 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, SafeAreaView, ToastAndroid, Image, TouchableHighlight, TouchableNativeFeedback, Button, Alert, StatusBar } from 'react-native';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+
+const takePhotofromCamera = () => {
+  ToastAndroid.show('Take Photo from Camera', ToastAndroid.SHORT);
+  ImagePicker.openCamera({
+    // width: 300,
+    // height: 400,
+    cropping: true,
+    includeBase64: true,
+    
+  }).then(image => {
+    console.log(image);
+    // setImage(image.path);
+  });
+}
+const choosePhotofromGallery = () => {
+  ToastAndroid.show('Choose Photo from Gallery', ToastAndroid.SHORT);
+  ImagePicker.openPicker({
+    // width: 300,
+    // height: 400,
+    cropping: true,
+    includeBase64: true,
+    
+  }).then(image => {
+    console.log(image);
+    // setImage(image.path);
+  });
+}
+
+export default function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Text>Hello World</Text>
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'dodgerblue'} />
+      
+      <View style={styles.buttonContainer}>
+      <TouchableNativeFeedback onPress={takePhotofromCamera} >
+        <View style={styles.btn}>
+        <Text style={styles.btnText}>Select from camera</Text>
         </View>
-      </ScrollView>
+      </TouchableNativeFeedback>
+      <TouchableNativeFeedback onPress={choosePhotofromGallery}>
+        <View style={styles.btn}>
+        <Text style={styles.btnText}>Choose from gallarey</Text>
+        </View>
+      </TouchableNativeFeedback>
+      </View>
     </SafeAreaView>
   );
-};
-
+}
+const buttonStyle = StyleSheet.create({
+  button: {
+  width: '20%',
+  height: 'auto',
+  }
+})
+const myStyles = {backgroundColor: 'dodgerblue'}
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  bgimage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
+  logoContainer: {
+    position: 'absolute',
+    top: 70,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    
+  },
+  logoText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    position: 'absolute',
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    
+  },
+  btn: {
+    backgroundColor: 'dodgerblue',
+    width: '80%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    marginBottom: 10,
+  },
+  btnText: {
+    color: 'white',
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: 'bold',
   },
-  highlight: {
-    fontWeight: '700',
+  registerButton: {
+    backgroundColor: 'dodgerblue',
+    width: '80%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+  registerText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
-
-export default App;
