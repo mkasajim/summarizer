@@ -12,6 +12,8 @@ const takePhotofromCamera = () => {
     // height: 400,
     cropping: true,
     includeBase64: true,
+    freeStyleCropEnabled: true,
+    compressImageQuality: 0.5,
     
   }).then(image => {
     console.log(image);
@@ -25,6 +27,8 @@ const choosePhotofromGallery = () => {
     // height: 400,
     cropping: true,
     includeBase64: true,
+    freeStyleCropEnabled: true,
+    compressImageQuality: 0.5,
     
   }).then(image => {
     console.log(image);
