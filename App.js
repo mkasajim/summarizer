@@ -1,130 +1,29 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ToastAndroid, Image, TouchableHighlight, TouchableNativeFeedback, Button, Alert, StatusBar } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar, SafeAreaView } from 'react-native';
 
-import ImagePicker from 'react-native-image-crop-picker';
+import Home from './screens/Home';
+import Ocr from './screens/Ocr';
+import Details from './screens/Details';
 
 
+const Stack = createNativeStackNavigator();
 
-const takePhotofromCamera = () => {
-  ToastAndroid.show('Take Photo from Camera', ToastAndroid.SHORT);
-  ImagePicker.openCamera({
-    // width: 300,
-    // height: 400,
-    cropping: true,
-    includeBase64: true,
-    freeStyleCropEnabled: true,
-    compressImageQuality: 0.5,
-    
-  }).then(image => {
-    console.log(image);
-    // setImage(image.path);
-  });
-}
-const choosePhotofromGallery = () => {
-  ToastAndroid.show('Choose Photo from Gallery', ToastAndroid.SHORT);
-  ImagePicker.openPicker({
-    // width: 300,
-    // height: 400,
-    cropping: true,
-    includeBase64: true,
-    freeStyleCropEnabled: true,
-    compressImageQuality: 0.5,
-    
-  }).then(image => {
-    console.log(image);
-    // setImage(image.path);
-  });
-}
+const App = () => {
 
-export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={'dodgerblue'} />
-      
-      <View style={styles.buttonContainer}>
-      <TouchableNativeFeedback onPress={takePhotofromCamera} >
-        <View style={styles.btn}>
-        <Text style={styles.btnText}>Select from camera</Text>
-        </View>
-      </TouchableNativeFeedback>
-      <TouchableNativeFeedback onPress={choosePhotofromGallery}>
-        <View style={styles.btn}>
-        <Text style={styles.btnText}>Choose from gallarey</Text>
-        </View>
-      </TouchableNativeFeedback>
-      </View>
+    <SafeAreaView style={{ flex: 1 }} >
+      <StatusBar barStyle={'light-content'} />
+    <NavigationContainer>
+      <Stack.Navigator initialRoutename="Home">
+        <Stack.Screen name="Home" component={Home} options={{title: 'Home'}}/>
+        <Stack.Screen name="Ocr" component={Ocr} options={{title: "Scanned Text"}}/>
+        <Stack.Screen name="Details" component={Details} />
+      </Stack.Navigator>
+    </NavigationContainer>
     </SafeAreaView>
   );
 }
-const buttonStyle = StyleSheet.create({
-  button: {
-  width: '20%',
-  height: 'auto',
-  }
-})
-const myStyles = {backgroundColor: 'dodgerblue'}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-  },
-  bgimage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoContainer: {
-    position: 'absolute',
-    top: 70,
-    alignItems: 'center',
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-    
-  },
-  logoText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    width: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    
-  },
-  btn: {
-    backgroundColor: 'dodgerblue',
-    width: '80%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  btnText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  registerButton: {
-    backgroundColor: 'dodgerblue',
-    width: '80%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25,
-  },
-  registerText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+
+export default App;
