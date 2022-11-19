@@ -15,7 +15,8 @@ setup the codespace first and then export the path
 
 export ANDROID_HOME="/workspaces/android"
 
-## Codespace setup
+# Codespace setup
+### Method - 1
 
 Step-1: Wget cmdline-tools
 
@@ -37,5 +38,17 @@ Step-3: Install SDK (first command will list all packages available to install)
 ./sdkmanager "platform-tools" "build-tools;30.0.3"
 
 Step-4: Export the path
+
+ANDROID_HOME="/workspaces/android"
+
+### Method -2
+
+Step -1: Wget android sdk installed ziped folder from this repo (android-sdk.zip)
+
+Step -2: Unzip it in /workspace
+
+unzip android-sdk.zip
+
+Step -3: Set the path
 
 ANDROID_HOME="/workspaces/android"
