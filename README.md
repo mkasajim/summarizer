@@ -18,6 +18,7 @@ export ANDROID_HOME="/workspaces/android"
 ## Codespace setup
 
 Step-1: Wget cmdline-tools
+
 cd /workspaces
 mkdir android && cd android
 wget https://dl.google.com/android/repository/commandlinetools-linux-9123335_latest.zip
