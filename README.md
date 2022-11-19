@@ -39,7 +39,7 @@ Step-3: Install SDK (first command will list all packages available to install)
 
 Step-4: Export the path
 
-ANDROID_HOME="/workspaces/android"
+export ANDROID_HOME="/workspaces/android"
 
 ### Method -2
 
@@ -51,4 +51,4 @@ unzip android-sdk.zip
 
 Step -3: Set the path
 
-ANDROID_HOME="/workspaces/android"
+export ANDROID_HOME="/workspaces/android"
