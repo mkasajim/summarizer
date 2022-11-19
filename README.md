@@ -3,7 +3,8 @@ This app is under development
 
 ## Build in Linux
 
-./android/gradlew assembleRelease --no-daemon
+cd android
+./gradlew assembleRelease --no-daemon
 
 ## Duplicate resourse problem solution
 
